@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'app1/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'app1/css/style.css' %}">
+</head>
+<body>
+<div class="container -fluid bg-dark">
+    {% include 'app1/navbar.html' %}
+
+</div>
+<div class="container" >
+    <div class="row">
+        <div class="col-sm-12">
+            {% block msg %}
+            {% endblock msg %}
+        </div>
+    </div>
+    <div class="row" >
+        {% block side %}
+        {% endblock side %}
+        {% block content %}
+        {% endblock content %}
+    </div>
+</div>
+</body>
+</html>

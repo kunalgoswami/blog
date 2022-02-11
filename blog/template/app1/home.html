@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'app1/base.html' %}
+    <meta charset="UTF-8">
+    <title>homepage</title>
+    {% load static %}
+
+
+
+</head>
+<body>
+<img src="{% static 'app1/images/index.jpeg' %}"/>
+{% block content %}
+<div class="col-sm-10" >
+    <h2 class="h1-responsive font-weight-bold text-center my-4">HomePage</h2>
+
+      {% for post in post %}
+       <div class="jumbotron fluid jumbo-color" align="center">
+  <div class="container">
+      <h4 class="btn btn-primary position-relative">{{post.user.username}}</h4>
+      <br>
+
+      <h5 class="badge bg-secondary">{{post.date}}</h5>
+    <h1 class="display-6 font-weight-bold">TItle: {{post.title}}</h1>
+    <p class="lead">Author: {{post.author}}</p>
+    <p class="lead">Description: {{post.desc}}</p>
+
+  </div>
+</div>
+    {% endfor %}
+</div>
+
+{% endblock content %}
+
+</body>
+</html>

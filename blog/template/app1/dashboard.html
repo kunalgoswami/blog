@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'app1/base.html' %}
+
+    {% load static %}
+</head>
+<body>
+{% block msg %}
+
+{% if message in messages %}
+{% for message in messages %}
+{% endfor %}
+{% endif %}
+{% endblock msg %}
+
+{% block side %}
+<div class="col-sm-2 text-white my-5 text-center">
+    <h4 class="btn btn-primary position-relative">Profile</h4>
+  <h5 class="badge bg-secondary">current_user: {{user.username}}</h5>
+   <h2 class="badge bg-secondary">user_id: {{user.id}}</h2>
+</div>
+ {% endblock side %}
+{% block content %}
+<div class="col-sm-10">
+    <h2 class="h1-responsive font-weight-bold text-center my-4">Dashboard</h2>
+    <a href="/add" class="btn btn-success">Add post</a>
+    <h2 class="text-center alert alert-info mt-4">Show Information</h2>
+    {% if posts %}
+
+    <table class="table  table-hover text-black">
+        <thead>
+        <tr class="text-center text-white">
+
+            <th class="table-dark" scope="col" style="width:20%">Title</th>
+            <th class="table-dark" scope="col" style="width:20%">Author</th>
+            <th class="table-dark" scope="col" style="width:55%">Description</th>
+            <th class="table-dark" scope="col" style="width:15%">Action</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for post in posts %}
+
+        <tr>
+            <td class="table-primary">{{post.title}}</td>
+            <td class="table-primary">{{post.author}}</td>
+            <td class="table-primary">{{post.desc}}</td>
+            <td class="text-center text-black table-primary" >
+
+                    <a href="{% url 'updatepost' post.id %}" class="btn btn-warning btn-sm">Edit</a>
+
+                <form action="{% url 'deletepost' post.id %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-success" value="Delete">
+
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+    {% else %}
+    <h4 class="text-center alert alert-warning">No Records</h4>
+    {% endif %}
+    </div>
+{% endblock content %}
+
+</body>
+</html>

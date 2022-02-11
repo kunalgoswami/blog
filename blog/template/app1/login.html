@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'app1/base.html' %}
+    <meta charset="UTF-8">
+    <title>login</title>
+{% load static %}
+<body>
+{% block content %}
+<div class="col-sm-10">
+    <h2 class="h1-responsive font-weight-bold text-center my-4">Login Page</h2>
+</div>
+<div class="container">
+    <form method="post">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="login" class="btn btn-success">
+    </form>
+
+</div>
+
+
+{% endblock content %}
+</body>
+</html>
